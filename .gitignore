@@ -1,0 +1,7 @@
+#Configuracion exlusiva de nuestra computadora
+config/config.local.php
+
+#Archivos generados automaticamente
+logs/
+temp/
+*.log
