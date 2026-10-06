@@ -8,3 +8,15 @@ Modulo de interfaz
 
 Este repositorio contiene las practicas de control de versions de los equipos
 
+
+
+\# Funciones Nuevas
+
+
+
+Mejor documentacion del Proyecto
+
+
+
+
+
