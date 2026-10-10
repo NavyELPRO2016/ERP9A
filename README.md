@@ -18,5 +18,13 @@ Mejor documentacion del Proyecto
 
 
 
+\# Usuarios principales del modulo
+
+
+
+Los usuarios principales que utilizaran este modulo son los usuarios en general
+
+
+
 
 
