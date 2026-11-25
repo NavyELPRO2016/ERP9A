@@ -1,0 +1,75 @@
+/* 1. Variables: cambia aquí los colores de todo el sistema. */
+:root {
+    --principal: #245c55;
+    --menu: #123331;
+    --fondo: #eef2f2;
+    --panel: #fff;
+    --texto: #203330;
+    --borde: #d5dfdd;
+}
+body[data-tema="azul"] { --principal: #285b91; --menu: #183653; }
+body[data-tema="morado"] { --principal: #78519b; --menu: #39274c; }
+body.oscuro { --fondo: #172121; --panel: #243130; --texto: #edf4f2; --borde: #465654; }
+
+/* 2. Estilos generales y controles compartidos. */
+* { box-sizing: border-box; }
+body { margin: 0; font: 15px Arial, sans-serif; background: var(--fondo); color: var(--texto); }
+h1 { margin: 0 0 10px; font-size: 28px; }
+h2 { margin: 0 0 16px; font-size: 18px; }
+p { margin: 0 0 20px; line-height: 1.5; }
+button, input, select { font: inherit; }
+button, .boton { display: inline-block; border: 0; border-radius: 6px; padding: 10px 14px; background: var(--principal); color: white; cursor: pointer; text-decoration: none; transition: opacity .2s; }
+button:hover, .boton:hover { opacity: .8; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid #c89d58; outline-offset: 2px; }
+input, select { width: 100%; padding: 10px; border: 1px solid var(--borde); border-radius: 5px; background: var(--panel); color: var(--texto); }
+label { display: block; margin-bottom: 5px; }
+[hidden] { display: none !important; }
+.secundario, #botonCancelar { background: #58686b; }
+.boton-eliminar { background: #a93434; }
+.boton-editar { margin-right: 6px; }
+
+/* 3. Barra superior y menú lateral. */
+.navbar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: var(--menu); color: white; }
+.navbar button, .menu button { background: #ffffff18; border: 1px solid #ffffff30; }
+.marca small { display: block; margin-top: 4px; color: #d2dfdf; }
+.opciones { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.opciones select { width: auto; }
+.opciones label { margin: 0; }
+.layout { display: flex; min-height: calc(100vh - 66px); }
+.menu { position: sticky; top: 66px; align-self: flex-start; display: flex; flex-direction: column; flex: 0 0 230px; height: calc(100vh - 66px); overflow: hidden; background: var(--menu); color: white; transition: flex-basis .25s, opacity .25s; }
+.menu-titulo { display: flex; align-items: center; justify-content: space-between; padding: 16px; white-space: nowrap; color: #d2ba8d; }
+.menu nav { padding: 8px; min-width: 230px; }
+.menu a { display: block; margin-bottom: 6px; padding: 13px 15px; border-left: 3px solid transparent; border-radius: 6px; color: white; text-decoration: none; transition: background .2s; }
+.menu a:hover, .menu a.activo { background: #ffffff18; border-left-color: #d2ba8d; }
+.menu-pie { margin-top: auto; padding: 20px; white-space: nowrap; color: #d2dfdf; }
+.menu-cerrado .menu { flex-basis: 0; opacity: 0; }
+
+/* 4. Patrón de tarjetas, formularios y tablas para todas las vistas. */
+main { flex: 1; min-width: 0; padding: 25px; animation: aparecer .25s ease-out; }
+@keyframes aparecer { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+.panel { min-width: 0; background: var(--panel); border: 1px solid var(--borde); border-radius: 9px; padding: 18px; margin-bottom: 16px; }
+.columnas { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 16px; align-items: start; }
+#formularioProducto input, #formularioProducto select { margin-bottom: 14px; }
+.tabla { overflow-x: auto; margin: 14px 0; }
+table { width: 100%; border-collapse: collapse; text-align: left; }
+th, td { padding: 11px; border-bottom: 1px solid var(--borde); }
+th { background: var(--fondo); }
+td:last-child { white-space: nowrap; }
+.indicadores { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.indicadores strong { display: block; font-size: 25px; margin-top: 12px; overflow-wrap: anywhere; }
+.acciones { display: flex; flex-wrap: wrap; gap: 10px; }
+.filtros { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; align-items: end; }
+.filtros input, .filtros select { margin-top: 6px; }
+#graficaProductos { min-height: 350px; }
+
+/* 5. Adaptación a pantallas pequeñas. */
+@media (max-width: 1000px) { .columnas { grid-template-columns: 1fr; } }
+@media (max-width: 700px) {
+    .navbar { position: relative; flex-wrap: wrap; padding: 10px; }
+    .opciones { margin-left: 0; flex-wrap: wrap; }
+    .layout { display: block; }
+    .menu { position: static; height: auto; max-height: 400px; transition: max-height .25s, opacity .25s; }
+    .menu-cerrado .menu { max-height: 0; }
+    main { padding: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
